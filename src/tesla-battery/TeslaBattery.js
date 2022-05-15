@@ -27,80 +27,34 @@ export const TeslaBattery = () => {
 
   const onBlurSpeed = () => {
     // TODO: On Speed blur, set the focus to false
-    updateState({
-      ...state,
-      speed: {
-        ...speed,
-        focused: false
-      }
-    })
   }
 
   const onFocusSpeed = () => {
     // TODO: On Speed focus, set the focus to true
-    updateState({
-      ...state,
-      speed: {
-        ...speed,
-        focused: true
-      }
-    })
   }
 
   const incrementSpeed = () => {
     // TODO: If the speed's value is less than the max speed then increase the speed's value by the speed.step
-    updateState({
-      ...state,
-      speed: {
-        ...speed,
-        value: speed.value + speed.step
-      }
-    })
   }
 
   const decrementSpeed = () => {
     // TODO: If the speed's value is higher than the min speed then decrease the speed's value by the speed.step
-    updateState({
-      ...state,
-      speed: {
-        ...speed,
-        value: speed.value - speed.step
-      }
-    })
   }
 
   const onBlurTemperature = () => {
     // TODO: On Temperature blur, set the focus to false
   }
 
-
-
   const onFocusTemperature = () => {
     // TODO: On Temperature focus, set the focus to true
   }
 
-
-
   const incrementTemperature = () => {
     // TODO: If the temperature's value is less than the max temperature then increase the temperature's value by the temperature.step
-    updateState({
-      ...state,
-      temperature: {
-        ...temperature,
-        value: temperature.value + temperature.step
-      }
-    })
   }
 
   const decrementTemperature = () => {
     // TODO: If the temperature's value is higher than the min temperature then decrease the temperature's value by the temperature.step
-    updateState({
-      ...state,
-      temperature: {
-        ...temperature,
-        value: temperature.value - temperature.step
-      }
-    })
   }
 
   const changeClimate = () => {
@@ -133,10 +87,10 @@ export const TeslaBattery = () => {
 
   return (
     <div className="tesla-battery">
-      <h1>{title}</h1>
+      {/* <h1>{title}</h1> */}
 
       {/* TeslaCarComponent */}
-      <div className="tesla-car">
+      {/* <div className="tesla-car">
         <div className="tesla-wheels">
           <div
             className={`tesla-wheel tesla-wheel--front tesla-wheel--${wheels.value}--${speed.value}`}
@@ -145,11 +99,11 @@ export const TeslaBattery = () => {
             className={`tesla-wheel tesla-wheel--rear tesla-wheel--${wheels.value}--${speed.value}`}
           />
         </div>
-      </div>
+      </div> */}
       {/* End TeslaCarComponent */}
 
       {/* TeslaStatsComponent */}
-      <div className="tesla-stats">
+      {/* <div className="tesla-stats">
         <ul>
           {models
             .map((model) => {
@@ -173,7 +127,7 @@ export const TeslaBattery = () => {
               </li>
             ))}
         </ul>
-      </div>
+      </div> */}
       {/* End TeslaStatsComponent */}
 
       <div className="tesla-controls cf">
@@ -214,7 +168,7 @@ export const TeslaBattery = () => {
         {/* End TeslaCounterComponent for speed */}
         <div className="tesla-climate cf">
           {/* TeslaCounterComponent for outside temperature */}
-          <div className="tesla-counter">
+          {/* <div className="tesla-counter">
             <p className="tesla-counter__title">Outside Temperature</p>
             <div className="tesla-counter__container cf">
               <div
@@ -245,11 +199,11 @@ export const TeslaBattery = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
           {/* End TeslaCounterComponent for outside temperature */}
 
           {/* TeslaClimateComponent */}
-          <div>
+          {/* <div>
             <label
               className={`tesla-climate__item ${!(temperature.value > 10) ? "tesla-heat " : " "
                 }${climate.value ? "tesla-climate__item--active " : " "}${climate.focused === climate.value
@@ -271,12 +225,12 @@ export const TeslaBattery = () => {
                 onFocus={onFocusClimate}
               />
             </label>
-          </div>
+          </div> */}
           {/* End TeslaClimateComponent */}
         </div>
 
         {/* TeslaWheelsComponent */}
-        <div className="tesla-wheels">
+        {/* <div className="tesla-wheels">
           <p className="tesla-wheels__title">Wheels</p>
           <div className="tesla-wheels__container cf">
             {wheels.sizes.map((size) => (
@@ -301,10 +255,11 @@ export const TeslaBattery = () => {
               </label>
             ))}
           </div>
-        </div>
+        </div> */}
         {/* End TeslaWheelsComponent */}
       </div>
-      <div className="tesla-battery__notice">
+      {/* TeslaCarPolicyComponent */}
+      {/* <div className="tesla-battery__notice">
         <p>
           The actual amount of range that you experience will vary based on
           your particular use conditions. See how particular use conditions
@@ -315,7 +270,8 @@ export const TeslaBattery = () => {
           battery age and condition, driving style and operating,
           environmental and climate conditions.
         </p>
-      </div>
+      </div> */}
+      {/* End TeslaCarPolicyComponent */}
     </div>
   )
 }
