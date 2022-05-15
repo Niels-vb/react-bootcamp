@@ -5,14 +5,6 @@ import { initialData } from "../mocks/data"
 export const TeslaBattery = () => {
   const [state, updateState] = useState(initialData)
 
-  useEffect(() => {
-    // TODO: When the app starts, get the metrics from the services and set the state to the metrics
-    updateState({
-      ...state,
-      metrics: teslaService.getModelData()
-    })
-  }, [])
-
   const {
     title,
     wheels,
@@ -23,36 +15,92 @@ export const TeslaBattery = () => {
     temperature,
   } = state
 
+  useEffect(() => {
+    // TODO: When the app starts, get the metrics from the services and set the state to the metrics
+    updateState({
+      ...state,
+      metrics: teslaService.getModelData()
+    })
+  }, [updateState])
+
+
+
   const onBlurSpeed = () => {
     // TODO: On Speed blur, set the focus to false
+    updateState({
+      ...state,
+      speed: {
+        ...speed,
+        focused: false
+      }
+    })
+  }
+
+  const onFocusSpeed = () => {
+    // TODO: On Speed focus, set the focus to true
+    updateState({
+      ...state,
+      speed: {
+        ...speed,
+        focused: true
+      }
+    })
+  }
+
+  const incrementSpeed = () => {
+    // TODO: If the speed's value is less than the max speed then increase the speed's value by the speed.step
+    updateState({
+      ...state,
+      speed: {
+        ...speed,
+        value: speed.value + speed.step
+      }
+    })
+  }
+
+  const decrementSpeed = () => {
+    // TODO: If the speed's value is higher than the min speed then decrease the speed's value by the speed.step
+    updateState({
+      ...state,
+      speed: {
+        ...speed,
+        value: speed.value - speed.step
+      }
+    })
   }
 
   const onBlurTemperature = () => {
     // TODO: On Temperature blur, set the focus to false
   }
 
-  const onFocusSpeed = () => {
-    // TODO: On Speed focus, set the focus to true
-  }
+
 
   const onFocusTemperature = () => {
     // TODO: On Temperature focus, set the focus to true
   }
 
-  const incrementSpeed = () => {
-    // TODO: If the speed's value is less than the max speed then increase the speed's value by the speed.step
-  }
 
-  const decrementSpeed = () => {
-    // TODO: If the speed's value is higher than the min speed then decrease the speed's value by the speed.step
-  }
 
   const incrementTemperature = () => {
     // TODO: If the temperature's value is less than the max temperature then increase the temperature's value by the temperature.step
+    updateState({
+      ...state,
+      temperature: {
+        ...temperature,
+        value: temperature.value + temperature.step
+      }
+    })
   }
 
   const decrementTemperature = () => {
     // TODO: If the temperature's value is higher than the min temperature then decrease the temperature's value by the temperature.step
+    updateState({
+      ...state,
+      temperature: {
+        ...temperature,
+        value: temperature.value - temperature.step
+      }
+    })
   }
 
   const changeClimate = () => {
@@ -136,10 +184,11 @@ export const TeslaBattery = () => {
             <div
               className="tesla-counter__item"
               tabIndex="0"
+              data-testid="speed-container-control"
               onBlur={onBlurSpeed}
               onFocus={onFocusSpeed}
             >
-              <p className="tesla-counter__number">
+              <p data-testid="speed-display" className="tesla-counter__number">
                 {speed.value}
                 <span>mph</span>
               </p>
@@ -147,12 +196,14 @@ export const TeslaBattery = () => {
                 <button
                   tabIndex="-1"
                   type="button"
+                  data-testid="speed-increment-btn"
                   onClick={incrementSpeed}
                   disabled={speed.value === speed.max}
                 />
                 <button
                   tabIndex="-1"
                   type="button"
+                  data-testid="speed-decrement-btn"
                   onClick={decrementSpeed}
                   disabled={speed.value === speed.min}
                 />
@@ -172,7 +223,7 @@ export const TeslaBattery = () => {
                 onBlur={onBlurTemperature}
                 onFocus={onFocusTemperature}
               >
-                <p className="tesla-counter__number">
+                <p data-testid="temperature-display" className="tesla-counter__number">
                   {temperature.value}
                   <span>°</span>
                 </p>
@@ -180,12 +231,14 @@ export const TeslaBattery = () => {
                   <button
                     tabIndex="-1"
                     type="button"
+                    data-testid="temperature-increment-btn"
                     onClick={incrementTemperature}
                     disabled={temperature.value === temperature.max}
                   />
                   <button
                     tabIndex="-1"
                     type="button"
+                    data-testid="temperature-decrement-btn"
                     onClick={decrementTemperature}
                     disabled={temperature.value === temperature.min}
                   />

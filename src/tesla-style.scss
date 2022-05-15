@@ -8,6 +8,7 @@
   padding: 25px 0;
   text-align: center;
   background: #222;
+
   img {
     width: 100px;
     height: 13px;
@@ -26,6 +27,7 @@
   padding: 25px 0;
   text-align: center;
   background: #222;
+
   img {
     width: 100px;
     height: 13px;
@@ -39,6 +41,7 @@
 .tesla-battery {
   width: 1050px;
   margin: 0 auto;
+
   h1 {
     font-family: 'RobotoNormal';
     font-weight: 100;
@@ -46,6 +49,7 @@
     text-align: center;
     letter-spacing: 3px;
   }
+
   &__notice {
     margin: 20px 0;
     font-size: 15px;
@@ -70,9 +74,11 @@
 
 @mixin prefix($property, $value) {
   $prefixes: (webkit moz ms o);
+
   @each $prefix in $prefixes {
     #{'-' + $prefix + '-' + $property}: $value;
   }
+
   // Output standard non-prefixed declaration
   #{$property}: $value;
 }
@@ -99,59 +105,73 @@
   background-repeat: no-repeat;
   background-position: 0 0;
   background-size: cover;
+
   &--front {
     left: 652px;
   }
+
   &--rear {
     right: -26px;
   }
+
   &--19 {
     &--45 {
       background-image: url(assets/wheel-19.png);
       @include prefix(animation, infinite-spinning 230ms steps(6) infinite);
     }
+
     &--50 {
       background-image: url(assets/wheel-19.png);
       @include prefix(animation, infinite-spinning 200ms steps(6) infinite);
     }
+
     &--55 {
       background-image: url(assets/wheel-19.png);
       @include prefix(animation, infinite-spinning 170ms steps(6) infinite);
     }
+
     &--60 {
       background-image: url(assets/wheel-19.png);
       @include prefix(animation, infinite-spinning 140ms steps(6) infinite);
     }
+
     &--65 {
       background-image: url(assets/wheel-19.png);
       @include prefix(animation, infinite-spinning 110ms steps(6) infinite);
     }
+
     &--70 {
       background-image: url(assets/wheel-19.png);
       @include prefix(animation, infinite-spinning 80ms steps(6) infinite);
     }
   }
+
   &--21 {
     &--45 {
       background-image: url(assets/wheel-21.png);
       @include prefix(animation, infinite-spinning 480ms steps(12) infinite);
     }
+
     &--50 {
       background-image: url(assets/wheel-21.png);
       @include prefix(animation, infinite-spinning 400ms steps(12) infinite);
     }
+
     &--55 {
       background-image: url(assets/wheel-21.png);
       @include prefix(animation, infinite-spinning 320ms steps(12) infinite);
     }
+
     &--60 {
       background-image: url(assets/wheel-21.png);
       @include prefix(animation, infinite-spinning 240ms steps(12) infinite);
     }
+
     &--65 {
       background-image: url(assets/wheel-21.png);
       @include prefix(animation, infinite-spinning 160ms steps(12) infinite);
     }
+
     &--70 {
       background-image: url(assets/wheel-21.png);
       @include prefix(animation, infinite-spinning 80ms steps(12) infinite);
@@ -163,6 +183,7 @@
   from {
     @include prefix(transform, rotate(0deg));
   }
+
   to {
     @include prefix(transform, rotate(360deg));
   }
@@ -172,6 +193,7 @@
   from {
     @include prefix(transform, rotate(0deg));
   }
+
   to {
     @include prefix(transform, rotate(360deg));
   }
@@ -179,6 +201,7 @@
 
 .tesla-climate {
   float: left;
+
   &__item {
     cursor: pointer;
     display: inline-block;
@@ -189,12 +212,14 @@
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
     color: #666;
     background: #fff;
+
     &--active {
       color: #fff;
       background: #33a0ff;
       background: -moz-linear-gradient(top, #33a0ff 0%, #388bff 100%);
       background: -webkit-linear-gradient(top, #33a0ff 0%, #388bff 100%);
       background: linear-gradient(to bottom, #33a0ff 0%, #388bff 100%);
+
       &.tesla-heat {
         background: #d64800;
         background: -moz-linear-gradient(top, #d64800 0%, #d20200 100%);
@@ -203,6 +228,7 @@
       }
     }
   }
+
   &__icon {
     display: block;
     width: 22px;
@@ -211,22 +237,27 @@
     background-repeat: no-repeat;
     background-position: center;
     background-image: url(assets/climate/ac-off.svg);
+
     .tesla-heat & {
       background-image: url(assets/climate/heat-off.svg);
     }
+
     .tesla-climate__item--active & {
       background-image: url(assets/climate/ac-on.svg);
     }
+
     .tesla-climate__item--active.tesla-heat & {
       background-image: url(assets/climate/heat-on.svg);
     }
   }
+
   .heat {
     margin: 14px 0 0;
     text-align: center;
     font-size: 10px;
     text-transform: uppercase;
   }
+
   input[type='checkbox'] {
     border: 0;
     clip: rect(0 0 0 0);
@@ -242,13 +273,16 @@
 .tesla-counter {
   float: left;
   width: 230px;
+
   &__title {
     letter-spacing: 2px;
     font-size: 16px;
   }
+
   &__container {
     margin: 10px 0 0;
     padding-right: 40px;
+
     input[type='number'] {
       border: 0;
       clip: rect(0 0 0 0);
@@ -260,12 +294,14 @@
       width: 1px;
     }
   }
+
   &__number {
     font-family: 'RobotoNormal';
     font-size: 25px;
     line-height: 25px;
     font-weight: 400;
     position: relative;
+
     span {
       position: absolute;
       top: 0;
@@ -274,6 +310,7 @@
       text-transform: uppercase;
     }
   }
+
   &__item {
     position: relative;
     width: 100%;
@@ -286,15 +323,18 @@
     background-position: 24.21053% 9px;
     background-repeat: no-repeat;
     background-size: 44px;
+
     &:focus {
       background-color: #f2f2f2;
-      outline: none;
+      border-color: #008dff;
     }
   }
+
   &__controls {
     position: absolute;
     right: 10px;
     top: 7px;
+
     button {
       outline: 0;
       width: 30px;
@@ -302,20 +342,22 @@
       cursor: pointer;
       display: block;
       padding: 11px 0;
-      vertical-align: middle;
       border: 0;
       background-size: 60%;
       background-position: center;
       background-repeat: no-repeat;
       background-color: transparent;
+
       &[disabled] {
         opacity: 0.4;
         cursor: not-allowed;
       }
+
       &:first-child {
         border-bottom: 1px solid #fff;
         background-image: url(assets/counter/up.svg);
       }
+
       &:last-child {
         border-top: 1px solid #ccc;
         background-image: url(assets/counter/down.svg);
@@ -326,12 +368,15 @@
 
 .tesla-stats {
   margin: -70px 0 30px;
+
   ul {
     text-align: center;
+
     li {
       display: inline-block;
       width: 130px;
       position: relative;
+
       p {
         font-size: 40px;
         font-weight: normal;
@@ -341,6 +386,7 @@
         position: relative;
         color: #008dff;
         text-align: right;
+
         span {
           font-size: 14px;
           font-weight: normal;
@@ -352,26 +398,33 @@
       }
     }
   }
+
   &-icon {
     height: 20px;
     background-size: auto 13px;
     background-position: top right;
     background-repeat: no-repeat;
+
     &--60 {
       background-image: url(assets/models/60.svg);
     }
+
     &--60d {
       background-image: url(assets/models/60d.svg);
     }
+
     &--75 {
       background-image: url(assets/models/75.svg);
     }
+
     &--75d {
       background-image: url(assets/models/75d.svg);
     }
+
     &--90d {
       background-image: url(assets/models/90d.svg);
     }
+
     &--p100d {
       background-image: url(assets/models/p100d.svg);
     }
@@ -381,13 +434,16 @@
 .tesla-wheels {
   float: left;
   width: 355px;
+
   &__title {
     letter-spacing: 2px;
     font-size: 16px;
   }
+
   &__container {
     margin: 10px 0 0;
   }
+
   &__item {
     cursor: pointer;
     width: 47%;
@@ -400,25 +456,31 @@
     background-position: 24.21053% 9px;
     background-repeat: no-repeat;
     background-size: 44px;
+
     &--19 {
       background-image: url(assets/wheels/19.svg);
     }
+
     &--21 {
       background-image: url(assets/wheels/21.svg);
     }
+
     &--focused {
       background-color: #f2f2f2;
     }
+
     &--active {
       border-color: #39f;
       box-shadow: inset 0px 0px 0px 1px #39f;
     }
+
     p {
       font-family: 'RobotoNormal';
       font-size: 16px;
       font-weight: 400;
       color: #333;
     }
+
     input[type='radio'] {
       border: 0;
       clip: rect(0 0 0 0);
