@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import teslaService from "./tesla-battery.service"
 import { initialData } from "../mocks/data"
+import { TeslaCounterComponent } from "../components/TeslaCounterComponent"
 
 export const TeslaBattery = () => {
   const [state, updateState] = useState(initialData)
@@ -27,34 +28,42 @@ export const TeslaBattery = () => {
 
   const onBlurSpeed = () => {
     // TODO: On Speed blur, set the focus to false
+    updateState({ ...state, speed: { ...speed, focused: false } })
   }
 
   const onFocusSpeed = () => {
     // TODO: On Speed focus, set the focus to true
+    updateState({ ...state, speed: { ...speed, focused: true } })
   }
 
   const incrementSpeed = () => {
     // TODO: If the speed's value is less than the max speed then increase the speed's value by the speed.step
+    updateState({ ...state, speed: { ...speed, value: speed.value + speed.step } })
   }
 
   const decrementSpeed = () => {
     // TODO: If the speed's value is higher than the min speed then decrease the speed's value by the speed.step
+    updateState({ ...state, speed: { ...speed, value: speed.value - speed.step } })
   }
 
   const onBlurTemperature = () => {
     // TODO: On Temperature blur, set the focus to false
+    updateState({ ...state, temperature: { ...temperature, focused: false } })
   }
 
   const onFocusTemperature = () => {
     // TODO: On Temperature focus, set the focus to true
+    updateState({ ...state, temperature: { ...temperature, focused: true } })
   }
 
   const incrementTemperature = () => {
     // TODO: If the temperature's value is less than the max temperature then increase the temperature's value by the temperature.step
+    updateState({ ...state, temperature: { ...temperature, value: temperature.value + temperature.step } })
   }
 
   const decrementTemperature = () => {
     // TODO: If the temperature's value is higher than the min temperature then decrease the temperature's value by the temperature.step
+    updateState({ ...state, temperature: { ...temperature, value: temperature.value - temperature.step } })
   }
 
   const changeClimate = () => {
@@ -132,74 +141,21 @@ export const TeslaBattery = () => {
 
       <div className="tesla-controls cf">
         {/* TeslaCounterComponent for speed */}
-        <div className="tesla-counter">
-          <p className="tesla-counter__title">Speed</p>
-          <div className="tesla-counter__container cf">
-            <div
-              className="tesla-counter__item"
-              tabIndex="0"
-              data-testid="speed-container-control"
-              onBlur={onBlurSpeed}
-              onFocus={onFocusSpeed}
-            >
-              <p data-testid="speed-display" className="tesla-counter__number">
-                {speed.value}
-                <span>mph</span>
-              </p>
-              <div className="tesla-counter__controls" tabIndex="-1">
-                <button
-                  tabIndex="-1"
-                  type="button"
-                  data-testid="speed-increment-btn"
-                  onClick={incrementSpeed}
-                  disabled={speed.value === speed.max}
-                />
-                <button
-                  tabIndex="-1"
-                  type="button"
-                  data-testid="speed-decrement-btn"
-                  onClick={decrementSpeed}
-                  disabled={speed.value === speed.min}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
+        <TeslaCounterComponent counter={speed}
+          onBlur={onBlurSpeed}
+          onFocus={onFocusSpeed}
+          increment={incrementSpeed}
+          decrement={decrementSpeed}
+          title="Speed" param="MPH" />
         {/* End TeslaCounterComponent for speed */}
         <div className="tesla-climate cf">
           {/* TeslaCounterComponent for outside temperature */}
-          {/* <div className="tesla-counter">
-            <p className="tesla-counter__title">Outside Temperature</p>
-            <div className="tesla-counter__container cf">
-              <div
-                className="tesla-counter__item"
-                tabIndex="0"
-                onBlur={onBlurTemperature}
-                onFocus={onFocusTemperature}
-              >
-                <p data-testid="temperature-display" className="tesla-counter__number">
-                  {temperature.value}
-                  <span>°</span>
-                </p>
-                <div className="tesla-counter__controls" tabIndex="-1">
-                  <button
-                    tabIndex="-1"
-                    type="button"
-                    data-testid="temperature-increment-btn"
-                    onClick={incrementTemperature}
-                    disabled={temperature.value === temperature.max}
-                  />
-                  <button
-                    tabIndex="-1"
-                    type="button"
-                    data-testid="temperature-decrement-btn"
-                    onClick={decrementTemperature}
-                    disabled={temperature.value === temperature.min}
-                  />
-                </div>
-              </div>
-            </div>
-          </div> */}
+          <TeslaCounterComponent counter={temperature}
+            onBlur={onBlurTemperature}
+            onFocus={onFocusTemperature}
+            increment={incrementTemperature}
+            decrement={decrementTemperature}
+            title="Outiside Temperature" param="°" />
           {/* End TeslaCounterComponent for outside temperature */}
 
           {/* TeslaClimateComponent */}
