@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import teslaService from "./tesla-battery.service"
 import { initialData } from "../mocks/data"
 import { TeslaSpeedComponent } from "../components/TeslaSpeedComponent"
+import { TeslaWheelsComponent } from "../components/TeslaWheelsComponent"
 
 export const TeslaBattery = () => {
   const [state, updateState] = useState(initialData)
@@ -139,11 +140,8 @@ export const TeslaBattery = () => {
 
       <div className="tesla-controls cf">
         {/* TeslaCounterComponent for speed */}
-       
-        {/* Niels was here */}
-
+          {/* Niels was here */}
         <TeslaSpeedComponent onBlurSpeed={onBlurSpeed} onFocusSpeed={onFocusSpeed} speed={speed} incrementSpeed={incrementSpeed} decrementSpeed={decrementSpeed} />
-
         {/* End TeslaCounterComponent for speed */}
         <div className="tesla-climate cf">
           {/* TeslaCounterComponent for outside temperature */}
@@ -209,32 +207,8 @@ export const TeslaBattery = () => {
         </div>
 
         {/* TeslaWheelsComponent */}
-        {/* <div className="tesla-wheels">
-          <p className="tesla-wheels__title">Wheels</p>
-          <div className="tesla-wheels__container cf">
-            {wheels.sizes.map((size) => (
-              <label
-                key={size}
-                className={`${wheels.value === size ? "tesla-wheels__item--active " : " "
-                  }${wheels.focused === size
-                    ? "tesla-wheels__item--focused "
-                    : " "
-                  }tesla-wheels__item tesla-wheels__item--${size}`}
-              >
-                <input
-                  type="radio"
-                  name="wheelsize"
-                  value={size}
-                  onBlur={() => onBlurWheels}
-                  onClick={() => changeWheelSize(size)}
-                  onFocus={() => onFocusWheels(size)}
-                  defaultChecked={wheels.value === size}
-                />
-                <p>{size}"</p>
-              </label>
-            ))}
-          </div>
-        </div> */}
+        <TeslaWheelsComponent wheels={wheels} onBlurWheels={onBlurWheels} changeWheelSize={changeWheelSize} onFocusWheels={onFocusWheels}/>
+          {/* Niels was here */}
         {/* End TeslaWheelsComponent */}
       </div>
       {/* TeslaCarPolicyComponent */}
