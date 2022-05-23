@@ -29,20 +29,23 @@ export const TeslaBattery = () => {
   const onBlurSpeed = () => {
     // TODO: On Speed blur, set the focus to false
 
-    updateState ({...state,speed: {...state.speed,focused:false}} )
+    updateState({...state, speed: {...state.speed, focused:false}})
 
   }
 
   const onFocusSpeed = () => {
     // TODO: On Speed focus, set the focus to true
+    updateState({...state, speed: {...state.speed, focused:true}})
   }
 
   const incrementSpeed = () => {
     // TODO: If the speed's value is less than the max speed then increase the speed's value by the speed.step
+    updateState({...state, speed: {...state.speed, value:state.speed.value + state.speed.step}})
   }
 
   const decrementSpeed = () => {
     // TODO: If the speed's value is higher than the min speed then decrease the speed's value by the speed.step
+    updateState({...state, speed: {...state.speed, value:state.speed.value - state.speed.step}})
   }
 
   const onBlurTemperature = () => {
