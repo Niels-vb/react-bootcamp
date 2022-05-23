@@ -1,88 +1,83 @@
-import { useEffect, useState } from "react"
-import teslaService from "./tesla-battery.service"
-import { initialData } from "../mocks/data"
+import { useEffect, useState } from "react";
+import teslaService from "./tesla-battery.service";
+import { initialData } from "../mocks/data";
 
 export const TeslaBattery = () => {
-  const [state, updateState] = useState(initialData)
+  const [state, updateState] = useState(initialData);
 
-  const {
-    title,
-    wheels,
-    speed,
-    models,
-    metrics,
-    climate,
-    temperature,
-  } = state
+  const { title, wheels, speed, models, metrics, climate, temperature } = state;
 
   useEffect(() => {
     // TODO: When the app starts, get the metrics from the services and set the state to the metrics
     updateState({
       ...state,
-      metrics: teslaService.getModelData()
-    })
-  }, [updateState])
-
-
+      metrics: teslaService.getModelData(),
+    });
+  }, [updateState]);
 
   const onBlurSpeed = () => {
     // TODO: On Speed blur, set the focus to false
-  }
+  };
 
   const onFocusSpeed = () => {
     // TODO: On Speed focus, set the focus to true
-  }
+  };
 
   const incrementSpeed = () => {
     // TODO: If the speed's value is less than the max speed then increase the speed's value by the speed.step
-  }
+  };
 
   const decrementSpeed = () => {
     // TODO: If the speed's value is higher than the min speed then decrease the speed's value by the speed.step
-  }
+  };
 
   const onBlurTemperature = () => {
     // TODO: On Temperature blur, set the focus to false
-  }
+    const newData = {
+      ...state,
+      temperature: { ...temperature, focused: false },
+    };
+    updateState(newData);
+  };
 
   const onFocusTemperature = () => {
     // TODO: On Temperature focus, set the focus to true
-  }
+  };
 
   const incrementTemperature = () => {
     // TODO: If the temperature's value is less than the max temperature then increase the temperature's value by the temperature.step
-  }
+  };
 
   const decrementTemperature = () => {
     // TODO: If the temperature's value is higher than the min temperature then decrease the temperature's value by the temperature.step
-  }
+  };
 
   const changeClimate = () => {
     // TODO: Swith the value on(true) and off(false)
-  }
+  };
 
   const onBlurClimate = () => {
     // TODO: On Climate blur, set the focus to false
-  }
+  };
 
   const onFocusClimate = () => {
     // TODO: On Climate focus, set the focus to true
-  }
+  };
 
   const onBlurWheels = () => {
     // TODO: On Wheels blur, set the focus to null
-  }
+  };
 
   const changeWheelSize = (size) => {
     // TODO: On Wheels change size, assign the new value to the wheels' value
-  }
+  };
 
   const onFocusWheels = (size) => {
     // TODO: On Wheels focus, assign the size to the focused property of the wheels' object
-  }
+  };
 
   if (!metrics) {
-    return <div>....Fetching Data from the backend</div>
+    return <div>....Fetching Data from the backend</div>;
   }
 
   return (
@@ -168,38 +163,7 @@ export const TeslaBattery = () => {
         {/* End TeslaCounterComponent for speed */}
         <div className="tesla-climate cf">
           {/* TeslaCounterComponent for outside temperature */}
-          {/* <div className="tesla-counter">
-            <p className="tesla-counter__title">Outside Temperature</p>
-            <div className="tesla-counter__container cf">
-              <div
-                className="tesla-counter__item"
-                tabIndex="0"
-                onBlur={onBlurTemperature}
-                onFocus={onFocusTemperature}
-              >
-                <p data-testid="temperature-display" className="tesla-counter__number">
-                  {temperature.value}
-                  <span>°</span>
-                </p>
-                <div className="tesla-counter__controls" tabIndex="-1">
-                  <button
-                    tabIndex="-1"
-                    type="button"
-                    data-testid="temperature-increment-btn"
-                    onClick={incrementTemperature}
-                    disabled={temperature.value === temperature.max}
-                  />
-                  <button
-                    tabIndex="-1"
-                    type="button"
-                    data-testid="temperature-decrement-btn"
-                    onClick={decrementTemperature}
-                    disabled={temperature.value === temperature.min}
-                  />
-                </div>
-              </div>
-            </div>
-          </div> */}
+
           {/* End TeslaCounterComponent for outside temperature */}
 
           {/* TeslaClimateComponent */}
@@ -273,5 +237,5 @@ export const TeslaBattery = () => {
       </div> */}
       {/* End TeslaCarPolicyComponent */}
     </div>
-  )
-}
+  );
+};
