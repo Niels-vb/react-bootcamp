@@ -48,14 +48,17 @@ export const TeslaBattery = () => {
 
   const changeClimate = () => {
     // TODO: Swith the value on(true) and off(false)
+    updateState({ ...state, climate: { ...climate, value: !climate.value } })
   }
 
   const onBlurClimate = () => {
     // TODO: On Climate blur, set the focus to false
+    updateState({ ...state, climate: { ...climate, focused: false } })
   }
 
   const onFocusClimate = () => {
     // TODO: On Climate focus, set the focus to true
+    updateState({ ...state, climate: { ...climate, focused: true } })
   }
 
   const onFocusTemperature = () => {
