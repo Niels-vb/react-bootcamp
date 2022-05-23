@@ -28,6 +28,9 @@ export const TeslaBattery = () => {
 
   const onBlurSpeed = () => {
     // TODO: On Speed blur, set the focus to false
+
+    updateState ({...state,speed: {...state.speed,focused:false}} )
+
   }
 
   const onFocusSpeed = () => {
