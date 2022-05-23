@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import teslaService from "./tesla-battery.service"
 import { initialData } from "../mocks/data"
+import { TeslaSpeedComponent } from "../components/TeslaSpeedComponent"
 
 export const TeslaBattery = () => {
   const [state, updateState] = useState(initialData)
@@ -27,18 +28,24 @@ export const TeslaBattery = () => {
 
   const onBlurSpeed = () => {
     // TODO: On Speed blur, set the focus to false
+
+    updateState({...state, speed: {...state.speed, focused:false}})
+
   }
 
   const onFocusSpeed = () => {
     // TODO: On Speed focus, set the focus to true
+    updateState({...state, speed: {...state.speed, focused:true}})
   }
 
   const incrementSpeed = () => {
     // TODO: If the speed's value is less than the max speed then increase the speed's value by the speed.step
+    updateState({...state, speed: {...state.speed, value:state.speed.value + state.speed.step}})
   }
 
   const decrementSpeed = () => {
     // TODO: If the speed's value is higher than the min speed then decrease the speed's value by the speed.step
+    updateState({...state, speed: {...state.speed, value:state.speed.value - state.speed.step}})
   }
 
   const onBlurTemperature = () => {
@@ -132,39 +139,11 @@ export const TeslaBattery = () => {
 
       <div className="tesla-controls cf">
         {/* TeslaCounterComponent for speed */}
-        <div className="tesla-counter">
-          <p className="tesla-counter__title">Speed</p>
-          <div className="tesla-counter__container cf">
-            <div
-              className="tesla-counter__item"
-              tabIndex="0"
-              data-testid="speed-container-control"
-              onBlur={onBlurSpeed}
-              onFocus={onFocusSpeed}
-            >
-              <p data-testid="speed-display" className="tesla-counter__number">
-                {speed.value}
-                <span>mph</span>
-              </p>
-              <div className="tesla-counter__controls" tabIndex="-1">
-                <button
-                  tabIndex="-1"
-                  type="button"
-                  data-testid="speed-increment-btn"
-                  onClick={incrementSpeed}
-                  disabled={speed.value === speed.max}
-                />
-                <button
-                  tabIndex="-1"
-                  type="button"
-                  data-testid="speed-decrement-btn"
-                  onClick={decrementSpeed}
-                  disabled={speed.value === speed.min}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
+       
+        {/* Niels was here */}
+
+        <TeslaSpeedComponent onBlurSpeed={onBlurSpeed} onFocusSpeed={onFocusSpeed} speed={speed} incrementSpeed={incrementSpeed} decrementSpeed={decrementSpeed} />
+
         {/* End TeslaCounterComponent for speed */}
         <div className="tesla-climate cf">
           {/* TeslaCounterComponent for outside temperature */}
