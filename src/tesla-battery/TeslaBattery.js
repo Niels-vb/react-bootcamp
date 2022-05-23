@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import teslaService from "./tesla-battery.service"
 import { initialData } from "../mocks/data"
+import { TeslaClimateComponent } from "../components/TeslaClimateComponent"
 
 export const TeslaBattery = () => {
   const [state, updateState] = useState(initialData)
@@ -45,18 +46,6 @@ export const TeslaBattery = () => {
     // TODO: On Temperature blur, set the focus to false
   }
 
-  const onFocusTemperature = () => {
-    // TODO: On Temperature focus, set the focus to true
-  }
-
-  const incrementTemperature = () => {
-    // TODO: If the temperature's value is less than the max temperature then increase the temperature's value by the temperature.step
-  }
-
-  const decrementTemperature = () => {
-    // TODO: If the temperature's value is higher than the min temperature then decrease the temperature's value by the temperature.step
-  }
-
   const changeClimate = () => {
     // TODO: Swith the value on(true) and off(false)
   }
@@ -67,6 +56,18 @@ export const TeslaBattery = () => {
 
   const onFocusClimate = () => {
     // TODO: On Climate focus, set the focus to true
+  }
+
+  const onFocusTemperature = () => {
+    // TODO: On Temperature focus, set the focus to true
+  }
+
+  const incrementTemperature = () => {
+    // TODO: If the temperature's value is less than the max temperature then increase the temperature's value by the temperature.step
+  }
+
+  const decrementTemperature = () => {
+    // TODO: If the temperature's value is higher than the min temperature then decrease the temperature's value by the temperature.step
   }
 
   const onBlurWheels = () => {
@@ -203,29 +204,7 @@ export const TeslaBattery = () => {
           {/* End TeslaCounterComponent for outside temperature */}
 
           {/* TeslaClimateComponent */}
-          {/* <div>
-            <label
-              className={`tesla-climate__item ${!(temperature.value > 10) ? "tesla-heat " : " "
-                }${climate.value ? "tesla-climate__item--active " : " "}${climate.focused === climate.value
-                  ? "tesla-climate__item--focused"
-                  : ""
-                }`}
-            >
-              <p className="heat">
-                {temperature.value > 10 ? "ac" : "heat"}{" "}
-                {climate.value ? "on" : "off"}
-              </p>
-              <i className="tesla-climate__icon" />
-              <input
-                type="checkbox"
-                name="climate"
-                defaultChecked={climate.value}
-                onClick={changeClimate}
-                onBlur={onBlurClimate}
-                onFocus={onFocusClimate}
-              />
-            </label>
-          </div> */}
+          <TeslaClimateComponent temperature={temperature} climate={climate} changeClimate={changeClimate} onBlurClimate={onBlurClimate} onFocusClimate={onFocusClimate} />
           {/* End TeslaClimateComponent */}
         </div>
 
