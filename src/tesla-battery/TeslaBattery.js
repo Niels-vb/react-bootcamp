@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import teslaService from "./tesla-battery.service";
 import { initialData } from "../mocks/data";
+import { TeslaTemperatureComponent } from "../components/TeslaTemperatureComponent";
 
 export const TeslaBattery = () => {
   const [state, updateState] = useState(initialData);
@@ -42,14 +43,36 @@ export const TeslaBattery = () => {
 
   const onFocusTemperature = () => {
     // TODO: On Temperature focus, set the focus to true
+    const newData = {
+      ...state,
+      temperature: { ...temperature, focused: true },
+    };
+    updateState(newData);
   };
 
   const incrementTemperature = () => {
     // TODO: If the temperature's value is less than the max temperature then increase the temperature's value by the temperature.step
+
+    const newData = {
+      ...state,
+      temperature: {
+        ...temperature,
+        value: temperature.value + temperature.step,
+      },
+    };
+    updateState(newData);
   };
 
   const decrementTemperature = () => {
     // TODO: If the temperature's value is higher than the min temperature then decrease the temperature's value by the temperature.step
+    const newData = {
+      ...state,
+      temperature: {
+        ...temperature,
+        value: temperature.value - temperature.step,
+      },
+    };
+    updateState(newData);
   };
 
   const changeClimate = () => {
@@ -163,6 +186,13 @@ export const TeslaBattery = () => {
         {/* End TeslaCounterComponent for speed */}
         <div className="tesla-climate cf">
           {/* TeslaCounterComponent for outside temperature */}
+          <TeslaTemperatureComponent
+            onBlurTemperature={onBlurTemperature}
+            temperature={temperature}
+            onFocusTemperature={onFocusTemperature}
+            incrementTemperature={incrementTemperature}
+            decrementTemperature={decrementTemperature}
+          />
 
           {/* End TeslaCounterComponent for outside temperature */}
 

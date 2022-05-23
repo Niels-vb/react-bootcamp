@@ -1,4 +1,4 @@
-export default function TeslaTemperatureComponent(props) {
+export function TeslaTemperatureComponent(props) {
   const {
     onBlurTemperature,
     temperature,
