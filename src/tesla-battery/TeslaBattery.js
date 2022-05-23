@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import teslaService from "./tesla-battery.service"
 import { initialData } from "../mocks/data"
+import { TeslaWheelsComponent } from "../components/TeslaWheelsComponent"
 
 export const TeslaBattery = () => {
   const [state, updateState] = useState(initialData)
@@ -90,16 +91,7 @@ export const TeslaBattery = () => {
       {/* <h1>{title}</h1> */}
 
       {/* TeslaCarComponent */}
-      {/* <div className="tesla-car">
-        <div className="tesla-wheels">
-          <div
-            className={`tesla-wheel tesla-wheel--front tesla-wheel--${wheels.value}--${speed.value}`}
-          />
-          <div
-            className={`tesla-wheel tesla-wheel--rear tesla-wheel--${wheels.value}--${speed.value}`}
-          />
-        </div>
-      </div> */}
+    <TeslaWheelsComponent speed={speed} wheels={wheels}/>
       {/* End TeslaCarComponent */}
 
       {/* TeslaStatsComponent */}
