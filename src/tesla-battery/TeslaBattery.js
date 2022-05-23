@@ -1,6 +1,9 @@
-import { useEffect, useState } from "react";
-import teslaService from "./tesla-battery.service";
-import { initialData } from "../mocks/data";
+import { useEffect, useState } from "react"
+import teslaService from "./tesla-battery.service"
+import { initialData } from "../mocks/data"
+import { TeslaWheelsComponent } from "../components/TeslaWheelsComponent"
+import { TeslaCarComponent } from "../components/TeslaCarComponent"
+import { TeslaSpeedComponent } from "../components/TeslaSpeedComponent"
 import { TeslaTemperatureComponent } from "../components/TeslaTemperatureComponent";
 
 export const TeslaBattery = () => {
@@ -22,15 +25,18 @@ export const TeslaBattery = () => {
 
   const onFocusSpeed = () => {
     // TODO: On Speed focus, set the focus to true
-  };
+    updateState({...state, speed: {...state.speed, focused:true}})
+  }
 
   const incrementSpeed = () => {
     // TODO: If the speed's value is less than the max speed then increase the speed's value by the speed.step
-  };
+    updateState({...state, speed: {...state.speed, value:state.speed.value + state.speed.step}})
+  }
 
   const decrementSpeed = () => {
     // TODO: If the speed's value is higher than the min speed then decrease the speed's value by the speed.step
-  };
+    updateState({...state, speed: {...state.speed, value:state.speed.value - state.speed.step}})
+  }
 
   const onBlurTemperature = () => {
     // TODO: On Temperature blur, set the focus to false
@@ -108,16 +114,7 @@ export const TeslaBattery = () => {
       {/* <h1>{title}</h1> */}
 
       {/* TeslaCarComponent */}
-      {/* <div className="tesla-car">
-        <div className="tesla-wheels">
-          <div
-            className={`tesla-wheel tesla-wheel--front tesla-wheel--${wheels.value}--${speed.value}`}
-          />
-          <div
-            className={`tesla-wheel tesla-wheel--rear tesla-wheel--${wheels.value}--${speed.value}`}
-          />
-        </div>
-      </div> */}
+    <TeslaCarComponent speed={speed} wheels={wheels}/>
       {/* End TeslaCarComponent */}
 
       {/* TeslaStatsComponent */}
@@ -150,39 +147,11 @@ export const TeslaBattery = () => {
 
       <div className="tesla-controls cf">
         {/* TeslaCounterComponent for speed */}
-        <div className="tesla-counter">
-          <p className="tesla-counter__title">Speed</p>
-          <div className="tesla-counter__container cf">
-            <div
-              className="tesla-counter__item"
-              tabIndex="0"
-              data-testid="speed-container-control"
-              onBlur={onBlurSpeed}
-              onFocus={onFocusSpeed}
-            >
-              <p data-testid="speed-display" className="tesla-counter__number">
-                {speed.value}
-                <span>mph</span>
-              </p>
-              <div className="tesla-counter__controls" tabIndex="-1">
-                <button
-                  tabIndex="-1"
-                  type="button"
-                  data-testid="speed-increment-btn"
-                  onClick={incrementSpeed}
-                  disabled={speed.value === speed.max}
-                />
-                <button
-                  tabIndex="-1"
-                  type="button"
-                  data-testid="speed-decrement-btn"
-                  onClick={decrementSpeed}
-                  disabled={speed.value === speed.min}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
+       
+        {/* Niels was here */}
+
+        <TeslaSpeedComponent onBlurSpeed={onBlurSpeed} onFocusSpeed={onFocusSpeed} speed={speed} incrementSpeed={incrementSpeed} decrementSpeed={decrementSpeed} />
+
         {/* End TeslaCounterComponent for speed */}
         <div className="tesla-climate cf">
           {/* TeslaCounterComponent for outside temperature */}
