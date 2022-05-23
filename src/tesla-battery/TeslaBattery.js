@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import teslaService from "./tesla-battery.service";
 import { initialData } from "../mocks/data";
 import { TeslaTemperatureComponent } from "../components/TeslaTemperatureComponent";
+import { TeslaStatsComponent } from "../components/TeslaStatsComponent";
 
 export const TeslaBattery = () => {
   const [state, updateState] = useState(initialData);
@@ -121,31 +122,16 @@ export const TeslaBattery = () => {
       {/* End TeslaCarComponent */}
 
       {/* TeslaStatsComponent */}
-      {/* <div className="tesla-stats">
-        <ul>
-          {models
-            .map((model) => {
-              const miles =
-                metrics[model][wheels.value][climate.value ? "on" : "off"]
-                  .speed[speed.value][temperature.value];
-              return {
-                model,
-                miles,
-              }
-            })
-            .map((stat) => (
-              <li key={stat.model}>
-                <div
-                  className={`tesla-stats-icon tesla-stats-icon--${stat.model.toLowerCase()}`}
-                />
-                <p>
-                  {stat.miles}
-                  <span>MI</span>
-                </p>
-              </li>
-            ))}
-        </ul>
-      </div> */}
+
+      <TeslaStatsComponent
+        models={models}
+        wheels={wheels}
+        speed={speed}
+        metrics={metrics}
+        climate={climate}
+        temperature={temperature}
+      />
+
       {/* End TeslaStatsComponent */}
 
       <div className="tesla-controls cf">
