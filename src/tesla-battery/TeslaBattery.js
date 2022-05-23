@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react"
 import teslaService from "./tesla-battery.service"
 import { initialData } from "../mocks/data"
-import { TeslaClimateComponent } from "../components/TeslaClimateComponent"
-import { TeslaWheelsComponent } from "../components/TeslaWheelsComponent"
-import { TeslaCarComponent } from "../components/TeslaCarComponent"
-import { TeslaSpeedComponent } from "../components/TeslaSpeedComponent"
-import { TeslaTemperatureComponent } from "../components/TeslaTemperatureComponent";
-import { TeslaStatsComponent } from "../components/TeslaStatsComponent";
+import {
+  TeslaClimateComponent,
+  TeslaCarComponent,
+  TeslaSpeedComponent,
+  TeslaStatsComponent,
+  TeslaTemperatureComponent
+} from "../components"
+
 
 export const TeslaBattery = () => {
   const [state, updateState] = useState(initialData);
@@ -64,7 +66,7 @@ export const TeslaBattery = () => {
     // TODO: On Climate focus, set the focus to true
     updateState({ ...state, climate: { ...climate, focused: true } })
   }
- 
+
   const onFocusTemperature = () => {
     // TODO: On Temperature focus, set the focus to true
     const newData = {
@@ -120,7 +122,7 @@ export const TeslaBattery = () => {
       {/* <h1>{title}</h1> */}
 
       {/* TeslaCarComponent */}
-    <TeslaCarComponent speed={speed} wheels={wheels}/>
+      <TeslaCarComponent speed={speed} wheels={wheels} />
       {/* End TeslaCarComponent */}
 
       {/* TeslaStatsComponent */}

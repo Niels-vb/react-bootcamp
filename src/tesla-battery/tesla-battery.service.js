@@ -1,4 +1,4 @@
-export default {
+const data = {
   getModelData() {
     return {
       '60': {
@@ -1288,3 +1288,5 @@ export default {
     };
   },
 };
+
+export default data;
