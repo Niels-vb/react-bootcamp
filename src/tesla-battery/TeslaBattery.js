@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import teslaService from "./tesla-battery.service"
 import { initialData } from "../mocks/data"
+import { TeslaClimateComponent } from "../components/TeslaClimateComponent"
 import { TeslaWheelsComponent } from "../components/TeslaWheelsComponent"
 import { TeslaCarComponent } from "../components/TeslaCarComponent"
 import { TeslaSpeedComponent } from "../components/TeslaSpeedComponent"
@@ -22,21 +23,22 @@ export const TeslaBattery = () => {
 
   const onBlurSpeed = () => {
     // TODO: On Speed blur, set the focus to false
+    updateState({ ...state, speed: { ...state.speed, focused: false } })
   };
 
   const onFocusSpeed = () => {
     // TODO: On Speed focus, set the focus to true
-    updateState({...state, speed: {...state.speed, focused:true}})
+    updateState({ ...state, speed: { ...state.speed, focused: true } })
   }
 
   const incrementSpeed = () => {
     // TODO: If the speed's value is less than the max speed then increase the speed's value by the speed.step
-    updateState({...state, speed: {...state.speed, value:state.speed.value + state.speed.step}})
+    updateState({ ...state, speed: { ...state.speed, value: state.speed.value + state.speed.step } })
   }
 
   const decrementSpeed = () => {
     // TODO: If the speed's value is higher than the min speed then decrease the speed's value by the speed.step
-    updateState({...state, speed: {...state.speed, value:state.speed.value - state.speed.step}})
+    updateState({ ...state, speed: { ...state.speed, value: state.speed.value - state.speed.step } })
   }
 
   const onBlurTemperature = () => {
@@ -48,6 +50,21 @@ export const TeslaBattery = () => {
     updateState(newData);
   };
 
+  const changeClimate = () => {
+    // TODO: Switch the value on(true) and off(false)
+    updateState({ ...state, climate: { ...climate, value: !climate.value } })
+  }
+
+  const onBlurClimate = () => {
+    // TODO: On Climate blur, set the focus to false
+    updateState({ ...state, climate: { ...climate, focused: false } })
+  }
+
+  const onFocusClimate = () => {
+    // TODO: On Climate focus, set the focus to true
+    updateState({ ...state, climate: { ...climate, focused: true } })
+  }
+ 
   const onFocusTemperature = () => {
     // TODO: On Temperature focus, set the focus to true
     const newData = {
@@ -80,18 +97,6 @@ export const TeslaBattery = () => {
       },
     };
     updateState(newData);
-  };
-
-  const changeClimate = () => {
-    // TODO: Swith the value on(true) and off(false)
-  };
-
-  const onBlurClimate = () => {
-    // TODO: On Climate blur, set the focus to false
-  };
-
-  const onFocusClimate = () => {
-    // TODO: On Climate focus, set the focus to true
   };
 
   const onBlurWheels = () => {
@@ -133,7 +138,7 @@ export const TeslaBattery = () => {
 
       <div className="tesla-controls cf">
         {/* TeslaCounterComponent for speed */}
-       
+
         {/* Niels was here */}
 
         <TeslaSpeedComponent onBlurSpeed={onBlurSpeed} onFocusSpeed={onFocusSpeed} speed={speed} incrementSpeed={incrementSpeed} decrementSpeed={decrementSpeed} />
@@ -152,29 +157,7 @@ export const TeslaBattery = () => {
           {/* End TeslaCounterComponent for outside temperature */}
 
           {/* TeslaClimateComponent */}
-          {/* <div>
-            <label
-              className={`tesla-climate__item ${!(temperature.value > 10) ? "tesla-heat " : " "
-                }${climate.value ? "tesla-climate__item--active " : " "}${climate.focused === climate.value
-                  ? "tesla-climate__item--focused"
-                  : ""
-                }`}
-            >
-              <p className="heat">
-                {temperature.value > 10 ? "ac" : "heat"}{" "}
-                {climate.value ? "on" : "off"}
-              </p>
-              <i className="tesla-climate__icon" />
-              <input
-                type="checkbox"
-                name="climate"
-                defaultChecked={climate.value}
-                onClick={changeClimate}
-                onBlur={onBlurClimate}
-                onFocus={onFocusClimate}
-              />
-            </label>
-          </div> */}
+          <TeslaClimateComponent temperature={temperature} climate={climate} changeClimate={changeClimate} onBlurClimate={onBlurClimate} onFocusClimate={onFocusClimate} />
           {/* End TeslaClimateComponent */}
         </div>
 
